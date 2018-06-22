@@ -2,7 +2,11 @@
 
 ## About
 
-NTS generates static HTML files from templates and compiles CSS and JS asset files. Supported by [Gulp](https://github.com/gulpjs/gulp) and [Nunjucks](https://github.com/mozilla/nunjucks).
+Use this tool to generate static HTML pages from templates and compiles CSS and JS asset files.
+
+Quickly write HTML for design screens for small projects without building a full frontend app.
+
+Supported by [Gulp](https://github.com/gulpjs/gulp) tasks and [Nunjucks](https://github.com/mozilla/nunjucks) templating engine.
 
 ## Table of Contents
 
@@ -41,6 +45,22 @@ npm install
 ```bat
 npm run watch
 ```
+
+<a name="features"></a>
+
+## Features
+
+1. Generate HTML files quickly with only HTML, CSS and JS
+
+2. Bootstrap and jQuery included
+
+3. CSS and JavaScript minifier
+
+4. SASS compiler
+
+5. Server not required
+
+6. Works out of the box!
 
 <a name="usage"></a>
 
