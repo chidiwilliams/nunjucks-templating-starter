@@ -36,10 +36,10 @@ git clone https://www.github.com/chidiwilliams/nunjucks-templating-starter
 npm install
 ```
 
-4. Build
+4. Build files and start development server
 
 ```bat
-npm run build
+npm run watch
 ```
 
 <a name="usage"></a>
@@ -218,8 +218,10 @@ Configuration for the JS renderer
 
 ## Dependencies
 
-1. Gulp [GitHub](https://github.com/gulpjs/gulp) [NPM](https://www.npmjs.com/package/gulp) [Website](https://gulpjs.com/)
+1. Gulp [GitHub](https://github.com/gulpjs/gulp), [NPM](https://www.npmjs.com/package/gulp), [Website](https://gulpjs.com/)
 
-2. Nunjucks [GitHub](https://github.com/mozilla/nunjucks) [Website](https://mozilla.github.io/nunjucks/)
+2. Nunjucks [GitHub](https://github.com/mozilla/nunjucks), [Website](https://mozilla.github.io/nunjucks/)
 
-3. Nodemon [GitHub](https://github.com/remy/nodemon) [NPM](https://www.npmjs.com/package/nodemon) [Website](https://nodemon.io/)
+3. Nodemon [GitHub](https://github.com/remy/nodemon), [NPM](https://www.npmjs.com/package/nodemon), [Website](https://nodemon.io/)
+
+4. Browser Sync [NPM](https://www.npmjs.com/package/browser-sync), [Website](https://browsersync.io)
