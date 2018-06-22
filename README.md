@@ -198,7 +198,15 @@ home.njk
 
 Configuration for the SASS renderer
 
-`config.sass.outputStyle`: Style of the output CSS files ('nested', 'expanded', 'compact', or 'compressed'). Default is 'nested'.
+`config.sass.outputStyle`: Style of the output CSS files ('nested' | 'expanded' | 'compact' | 'compressed'). Default is 'nested'.
+
+### `config.js`
+
+Configuration for the JS renderer
+
+`config.js.doCompress`: Determines if the final JS files would be compressed (true | false). Default is false.
+
+`config.js.doKeepSource`: Determines if the .js source file would be included after compression (true | false).  Default is false. `config.js.doCompress` must be set to true.
 
 <a name="dependencies"></a>
 
