@@ -1,6 +1,6 @@
 module.exports = {
   paths: {
-    public_dir: 'public',
+    public_dir: 'dist',
     assets_dir: 'resources/assets',
     views_dir: 'resources/views',
     vendor_dir: 'resources/vendor',
@@ -9,7 +9,7 @@ module.exports = {
   njk: {
     // Add custom variables to be inserted into the HTML templates
     templateVars: {
-      testing: 'This is a test variable. Testing...',
+      testing: 'Test Variable.',
     },
   },
   sass: {

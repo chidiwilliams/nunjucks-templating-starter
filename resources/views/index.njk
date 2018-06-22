@@ -3,8 +3,12 @@
 <!--  -->
 
 {% block content %}
-<div class="container">
-  <div class="testing">{{ testing }}</div>
-  <div>Hello home!</div>
+<div class="">
+  {{ testing }}
+  <div class="testing">If I am big, your main.css loaded correctly.</div>
+  <div class="container">If I am offset to the right, Bootstrap CSS loaded correctly.</div>
+  <div id="jquery">jQuery did not load.</div>
+  <br><br>
+  <div class="welcome">Welcome home!</div>
 </div>
 {% endblock %}

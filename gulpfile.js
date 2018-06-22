@@ -27,9 +27,10 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('watch', function() {
+  gulp.start('compileAll');
   gulp.watch(
     [config.paths.resources_dir + '/**/*.+(html|js|css|scss|njk)'],
-    ['default']
+    ['compileAll']
   );
 
   gulp

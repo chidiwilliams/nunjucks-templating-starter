@@ -84,7 +84,7 @@ views/home.njk
 {% endblock %}
 ```
 
-The rendered HTML files would be sent to the `public` directory.
+The rendered HTML files would be sent to the `dist` directory.
 
 home.html
 ```html
@@ -107,9 +107,9 @@ config/config.js
 config.sass.outputStyle = 'compressed'
 ```
 
-After building, the compiled CSS files are sent to the `public/css` directory.
+After building, the compiled CSS files are sent to the `dist/css` directory.
 
-To import the CSS into a Nunjucks template, link to `public/css/[FILE_NAME]`. Example:
+To import the CSS into a Nunjucks template, link to `dist/css/[FILE_NAME]`. Example:
 
 master.njk
 
@@ -117,8 +117,12 @@ master.njk
 <html>
 <head>
   ...
-  <link rel="stylesheet" href="public/css/main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
+<body>
+...
+<script src="js/main.js"></script>
+</body>
 ...
 </html>
 ```
@@ -133,11 +137,11 @@ config/config.js
 config.sass.outputStyle = 'compressed'
 ```
 
-After building, the compiled CSS files are sent to the `public/css` directory.
+After building, the compiled CSS files are sent to the `dist/css` directory.
 
 ### Vendor
 
-Put vendor CSS and JS assets in the `resources/vendor/css` and `resources/vendor/js` respectively. During compilation, these assets are directly copied into the `public` directory without processing.
+Put vendor CSS and JS assets in the `resources/vendor/css` and `resources/vendor/js` respectively. During compilation, these assets are directly copied into the `dist` directory without processing.
 
 <a name="commands"></a>
 
@@ -145,11 +149,13 @@ Put vendor CSS and JS assets in the `resources/vendor/css` and `resources/vendor
 
 ### `npm run build`
 
-Compiles the HTML and assets files into the public directory. This action can also be done by running `node index.js`.
+Compiles the HTML and assets files into the dist directory. This action can also be done by running `node index.js`.
 
 ### `npm run watch`
 
 Same as above but watches for file changes in the resources directory and recompiles the assets accordingly.
+
+Also, it starts a server at http://localhost:3000/ and syncs your browser with your output files. Great for development.
 
 <a name="configuration"></a>
 
