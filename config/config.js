@@ -1,9 +1,10 @@
 module.exports = {
-  gulp: {
+  paths: {
     public_dir: 'public',
     assets_dir: 'resources/assets',
     views_dir: 'resources/views',
-    vendor_dir: 'vendor',
+    vendor_dir: 'resources/vendor',
+    resources_dir: 'resources',
   },
   njk: {
     // Add custom variables to be inserted into the HTML templates

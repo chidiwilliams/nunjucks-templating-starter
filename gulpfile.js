@@ -4,45 +4,65 @@ const njkRender = require('gulp-nunjucks-render');
 const sassRender = require('gulp-sass');
 const minify = require('gulp-minify');
 const config = require('./config/config');
+const browserSync = require('browser-sync').create();
 
 gulp.task('dir', function() {
-  if (!fs.existsSync(config.gulp.public_dir)) {
-    fs.mkdirSync(config.gulp.public_dir);
-    if (!fs.existsSync(config.gulp.public_dir + '/css')) {
-      fs.mkdirSync(config.gulp.public_dir + '/css');
+  if (!fs.existsSync(config.paths.public_dir)) {
+    fs.mkdirSync(config.paths.public_dir);
+    if (!fs.existsSync(config.paths.public_dir + '/css')) {
+      fs.mkdirSync(config.paths.public_dir + '/css');
     }
-    if (!fs.existsSync(config.gulp.public_dir + '/js')) {
-      fs.mkdirSync(config.gulp.public_dir + '/js');
+    if (!fs.existsSync(config.paths.public_dir + '/js')) {
+      fs.mkdirSync(config.paths.public_dir + '/js');
     }
   }
 });
 
+gulp.task('browserSync', function() {
+  browserSync.init({
+    server: {
+      baseDir: config.paths.public_dir,
+    },
+  });
+});
+
+gulp.task('watch', function() {
+  gulp.watch(
+    [config.paths.resources_dir + '/**/*.+(html|js|css|scss|njk)'],
+    ['default']
+  );
+
+  gulp
+    .watch(config.paths.public_dir + '/**/*')
+    .on('change', browserSync.reload);
+});
+
 gulp.task('njk', function() {
   return gulp
-    .src(config.gulp.views_dir + '/*.@(html|njk)')
+    .src(config.paths.views_dir + '/*.@(html|njk)')
     .pipe(
       njkRender({
-        path: [config.gulp.views_dir],
+        path: [config.paths.views_dir],
         data: config.njk.templateVars,
       })
     )
-    .pipe(gulp.dest(config.gulp.public_dir));
+    .pipe(gulp.dest(config.paths.public_dir));
 });
 
 gulp.task('sass', function() {
   return gulp
-    .src(config.gulp.assets_dir + '/scss/**/*.scss')
+    .src(config.paths.assets_dir + '/scss/**/*.scss')
     .pipe(
       sassRender({
         outputStyle: config.sass.outputStyle,
       })
     )
-    .pipe(gulp.dest(config.gulp.public_dir + '/css'));
+    .pipe(gulp.dest(config.paths.public_dir + '/css'));
 });
 
 gulp.task('jsMinify', function() {
   return gulp
-    .src(config.gulp.assets_dir + '/js/**/*.js')
+    .src(config.paths.assets_dir + '/js/**/*.js')
     .pipe(
       minify({
         ext: {
@@ -50,32 +70,32 @@ gulp.task('jsMinify', function() {
           min: '.min.js',
         },
         noSource: config.js.doKeepSource,
-        exclude: [config.gulp.vendor_dir],
+        exclude: [config.paths.vendor_dir],
         ignoreFiles: ['.min.js'],
       })
     )
-    .pipe(gulp.dest(config.gulp.public_dir + '/js'));
+    .pipe(gulp.dest(config.paths.public_dir + '/js'));
 });
 
 gulp.task('js', function() {
   return gulp
-    .src(config.gulp.assets_dir + '/js/**/*.js')
-    .pipe(gulp.dest(config.gulp.public_dir + '/js'));
+    .src(config.paths.assets_dir + '/js/**/*.js')
+    .pipe(gulp.dest(config.paths.public_dir + '/js'));
 });
 
 gulp.task('vendorJS', function() {
   return gulp
-    .src(config.gulp.vendor_dir + '/js/**/*.js')
-    .pipe(gulp.dest(config.gulp.public_dir + '/js'));
+    .src(config.paths.vendor_dir + '/js/**/*.js')
+    .pipe(gulp.dest(config.paths.public_dir + '/js'));
 });
 
 gulp.task('vendorCSS', function() {
   return gulp
-    .src(config.gulp.vendor_dir + '/css/**/*.css')
-    .pipe(gulp.dest(config.gulp.public_dir + '/css'));
+    .src(config.paths.vendor_dir + '/css/**/*.css')
+    .pipe(gulp.dest(config.paths.public_dir + '/css'));
 });
 
-gulp.task('default', function() {
+gulp.task('compileAll', function() {
   gulp.start('dir');
   gulp.start('njk');
   gulp.start('sass');
@@ -83,5 +103,9 @@ gulp.task('default', function() {
   gulp.start('vendorJS');
   gulp.start('vendorCSS');
 });
+
+gulp.task('default', ['compileAll']);
+
+gulp.task('auto', ['browserSync', 'watch']);
 
 module.exports = gulp;
