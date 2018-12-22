@@ -105,8 +105,8 @@ gulp.task('compileAll', function() {
   gulp.start('vendorCSS');
 });
 
-gulp.task('default', ['compileAll']);
+gulp.task('default', gulp.series(['compileAll']));
 
-gulp.task('auto', ['browserSync', 'watch']);
+gulp.task('auto', gulp.series(['browserSync', 'watch']));
 
 module.exports = gulp;
